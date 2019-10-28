@@ -5,11 +5,14 @@
 \usepackage{amsmath}
 
 \usepackage{booktabs}
+\usepackage{csquotes}
 
 % NOTE: This must be the last \usepackage in the whole document!
 \usepackage[bookmarksopen,bookmarksnumbered,linktocpage]{hyperref}
 
-\addbibresource{bibliography.bib} % The file name of your bibliography database
+\usepackage[backend=bibtex]{biblatex}
+
+\addbibresource{references.bib}
 
 \begin{document}
 
@@ -48,7 +51,7 @@ Lorem ipsum.
 
 \begin{thetermlist}
 \item[\TeX] A batch-oriented typesetting system written by 
-Donald Knuth in 1977--1989 \parencite[see][]{knuth86:_texbook}.
+Donald Knuth in 1977--1989.
 \end{thetermlist}
 
 \mainmatter
@@ -60,6 +63,7 @@ Donald Knuth in 1977--1989 \parencite[see][]{knuth86:_texbook}.
 
 \section{Optimization}
 \input{contents/optimization.tex}
+\cite{ko_practical_2015}\cite{yang_optimization_2007-1}
 
 \chapter{Multiple criteria decision making}
 

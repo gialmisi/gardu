@@ -70,9 +70,9 @@
 \RequirePackage{mathptmx}
 \RequirePackage[scaled=.92]{helvet}
 \RequirePackage{courier}
-\ifgradu@stdbib
-\RequirePackage[authordate,backend=biber,sortlocale=\gradu@sortlocale,noibid]{biblatex-chicago}
-\fi
+%\ifgradu@stdbib
+%\RequirePackage[backend=biber, natbib, style=alphabetic, citestyle=authoryear]{biblatex}
+%\fi
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,9 +191,6 @@
 
 \setlength\parindent{0pt}
 \setlength\parskip{10pt}
-\ifgradu@stdbib
-\setlength\bibhang{0pt}
-\fi
 
 \def\@listi{%
   \leftmargin\leftmargini%
@@ -250,13 +247,6 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LOCALIZATION
-
-\ifgradu@stdbib
-\DefineBibliographyStrings{finnish}{%
-  bibliography={L\"ahteet},%
-  andothers={ym\adddot}%
-}
-\fi
 
 \addto\captionsfinnish{%
   \def\gradu@msg@muistitko{Muistitko k\"aytt\"a\"a}%
