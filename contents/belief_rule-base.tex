@@ -18,23 +18,26 @@ A rule can be as simple as an if... then... statement; such a rule could be for 
 %Belief-rule based systems are meant to tackle such scenarios. They extend the idea of rules to include a certain degree of belief to each rule.
 %Then, given an observation, such as, how dark the sky looks, a belief-rule based system can give an answer that Bob should probably bring an umbrella,
 %if he decides to venture outside.
-A rule consists of three elements: the precedent, the condition, and the consequent. In previous example with rule 1,
-suppose there was an agent named Bob who is contemplating whether he should bring an umbrella
+A rule consists of three elements: the precedent, the condition, and the consequent. Take rule 1 as an example.
+Suppose there was an agent named Bob who is contemplating whether he should bring an umbrella
 outside or not. The precedent in the example should give a definite answer to the question implied by the condition of
 the rule "if it rains". The question implied is "Does it rain?".
 Therefore, Bob needs to look outside and see if it rains or not; he needs information from the surrounding environment.
-Using the precedent, the rule can be resolved: If bob observes rain, he should bring an umbrella outside.
+Using the observed precedent and the condition, the rule can be resolved: If bob observes rain, he 
+should bring an umbrella outside.
 
-However, the rule in the example does not state anything
-regarding the case when it does not rain outside. One could argue that the rule implicitly suggests to not bring an umbrella,
-but it is not an explicit consequent of the rule when it does not rain outside. To cover the case of no rain, an additional rule should be stated:
+However, the rule in the previous example does not state anything
+regarding the case when it does not rain outside. One could argue that the rule implicitly suggests to not bring an umbrella
+in the absence of rain,
+but it is not an explicit consequent of the rule in the case of no rain. To cover the case of no rain,
+an additional rule should be stated:
 
 \begin{displayquote}
 \textbf{Rule 2:} ``\textit{If it does not rain outside, do not bring an umbrella.}``.
 \end{displayquote}
 
-In turn, rule 2 does not state anything regarding the case when it rains outside. 
-For Bob to have a coherent set of actions whether to bring an umbrella outside or not,
+In turn, rule 2 does not state anything regarding the case when it does rain outside. 
+For Bob to have a coherent set of actions to take, whether to bring an umbrella outside or not,
 the rules 1 and 2 should be combined into a single rule set:
 
 \begin{displayquote}
@@ -50,26 +53,32 @@ and "It does not rain outside.". If there was a third precedent in the example, 
 would be incomplete and is said to contain a degree of ignorance: It does not state what to do in the case when the observation of rain
 is indefinite.
 
-However, in real life, observations are seldom definitive. To cover all possible cases of different observations made by Bob in rule set 1
-would mean an addition of an indefinite number of rules with the precedents covering all possible cases: and exercise in futility.
+That being said, in real life, observations are seldom definitive. To cover all possible cases of
+different observations, made by Bob in rule set 1,
+would mean an addition of an indefinite number of rules, with the precedents covering all possible cases.
+In practice, trying to cover all cases is an exercise in futility.
 
 Could the conditions of rules in a rule set have a degree of truthiness associated to them, instead of being simply true of false?
-How to infer an appropriate consequent from such a rule set?
-This is where belief rule-base systems come into play.
+Could such rule set cover a continuous range of observations and outcomes?
+Is it possible to infer an appropriate consequent from such a rule set, and how to interpret the outcome?
+This is where belief rule-based systems come into play.
 
 \section{Belief rules}
-In a belief rule $R$, the precedent are defined as a set of finite arrays of referential values, and the consequent
-is defined as a finite array of referential values. It is assumed that these values are real numbers.
-A referential array set $A$, with finite arrays $A_i$, is defined for the precedent, and a finite value array $D$ is defined for the consequent.
-Formally defined:
+In a belief rule $R$, the precedent is defined as a set of finite arrays of referential values, and the consequent
+is defined as a single finite array of referential values. In this thesis, it is assumed that these referential values
+are real numbers.
+
+Following the RIMER approach \cite{rimer2006} to define a belief rule,
+a referential array set $A$, called a packet precedent, with finite arrays $A_i$, is defined as the precedent of a 
+belief rule:
 
 \begin{equation}
-\label{A_set_def}
+\label{eq:A_set_def}
     A = \Set{ A_i = \Set{A_{i, n} \mid \forall n \in \left[1, \left|A_i\right| \right]}
-    \mid \forall i \in \left[1, T \right] }, \quad\text{where}\quad i, n, T \in \mathbb{N};
+    \mid \forall i \in \left[1, T \right] }, \quad\text{where}\quad i, n, T \in \mathbb{N}.
 \end{equation}
 
-and
+And an array of finite values, $D$, is defined as the consequent in a belief rule:
 
 \begin{equation}
 \label{D_set_def}
@@ -77,21 +86,30 @@ and
 \end{equation}
 
 In \eqref{A_set_def} and \eqref{D_set_def}, $T$ is the total number of attributes in an observation, $A_i$ is the array of possible  referential values
-for the $i$th attribute in an observation,  $\left|A_i\right|$ is the number of referential values for the $i$th attribute in an observation,
-and $N$ represent the total number of referential values for the consequents.
+for the $i$th attribute in an observation, $\left|A_i\right|$ is the number of referential values for the $i$th attribute in an observation,
+and $N$ represent the total number of referential values for the consequent.
 
 The input to a belief rule is defined as an observation $X$, which is an array of observed precedent values
 for $T$ attributes defined as
 
 \begin{equation}
+    \label{eq:X_input}
     X = \Set{ x_i \mid \forall i \in \left[1, T \right]}, \quad\text{where}\quad i \in \mathbb{N}.
 \end{equation}
 
-The condition of a belief rule can be defined as a logical relationship $F$ between $X$ and $A$ as
+The values $x_i$ in \eqref{eq:X_input} take values equal to the finite arrays $A_i$ present in the packet
+antecedent $A$ in \eqref{eq:A_set_def}.
+
+The condition of a belief rule can be defined as a logical relationship $F$ between the observation $X$, and
+the packet antecedent $A$ as
 
 \begin{equation}
+    \label{eq:logical}
     F : x_1\;\text{is}\;A_1\;\land\;x_2\;\text{is}\;A_2\;\land\dots\land\;x_T\;\text{is}\;A_T.
 \end{equation}
+
+The logical relation $\land$ present in \eqref{eq:logical}, could be replaced by some other logical relation, but in this thesis,
+the RIMER approach is followed, which uses the $\land$ relation.
 
 Finally, a real valued belief degree $\beta_j$ can be defined for a belief rule. $\beta_j$ represents the degree of belief for $D_j$ to be the consequent
 in a belief rule, when $F$ is given.
@@ -126,3 +144,45 @@ the same consequent referential values $D$.
 %\end{equation}
 
 %where $A_0 = A_T$ and $A_{T+1} = A_1$.
+
+\section{Handling uncertain information}
+{\color{red}
+Belief distributions and belief degrees are presented, and the link to belief rules is established.
+}
+
+\section{Belief rule-base systems}
+{\color{red}
+Aggregates the previous two sections into one coherent entity, finally giving a formal representation of a BRB model.
+}
+
+\section{Inference on belief rule-base systems}
+{\color{red}
+How to use evidential reasoning to reason about a BRB system. Formulas are shown, not derived, on how to transform an input to a BRB system,
+how to calculate activation weights of
+a BRB system using the transformed input, and how the belief degrees can then be calculated using the activation weights. What is a belief rule expression matrix?
+}
+
+\section{Training belief rule-base systems}
+{\color{red}
+The concept of an initial principle to build an initial belief rule expression matrix.
+The tunable parameters of a BRB system are briefly explored. It is then explained how these parameters can be tuned using known information of
+a system that is to be modelled.
+}
+
+\section{Transparency of belief rule-base systems}
+{\color{red}
+Observation of the transparency of the model combined to its' adaptive nature makes it a good candidate as an explainable machine learning tool.
+}
+
+\section{Belief rule-base systems as machine learning models}
+{\color{red}
+Why BRBs are good candidates of ML models? References to real life applications are given as a motivation. Suggest BRBs to have above average explainability,
+compared to blackbox models, such as deep neural networks.
+}
+
+\section{Examples}
+{\color{red}
+Finally, a simple numerical example is given, with a link to the source code to reproduce the results. I plan to model a non-linear function, and show,
+the capability of a BRB system in modelling a non-linear system as a motivation. It is mentioned that the author has developed a simple software library to implement
+trainable BRB models.
+}

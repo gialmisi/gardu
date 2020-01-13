@@ -9,11 +9,11 @@
 \usepackage{braket}
 \usepackage{booktabs}
 \usepackage{csquotes}
+\usepackage[backend=bibtex]{biblatex}
 
 % NOTE: This must be the last \usepackage in the whole document!
-\usepackage[bookmarksopen,bookmarksnumbered,linktocpage]{hyperref}
-
-\usepackage[backend=bibtex]{biblatex}
+% \usepackage[bookmarksopen,bookmarksnumbered,linktocpage]{hyperref}
+\usepackage{hyperref}
 
 \addbibresource{references.bib}
 
@@ -43,19 +43,15 @@ Lorem ipsum.
 
 \author{Giovanni Misitano}
 \contactinformation{\texttt{giovanni.a.misitano@jyu.fi}}
-\supervisor{Jussi}
-\supervisor{Kaisa}
-\supervisor{Jian-bo?}
+\supervisor{Kaisa Mietiinen}
+\supervisor{Jussi Hakanen}
 
- % you don't need this line in a thesis
-\type{Template and manual for a thesis document class}
+\type{Master's thesis}
 
 \maketitle
 
-\begin{thetermlist}
-\item[\TeX] A batch-oriented typesetting system written by 
-Donald Knuth in 1977--1989.
-\end{thetermlist}
+% \begin{thetermlist}
+% \end{thetermlist}
 
 \mainmatter
 
@@ -70,6 +66,9 @@ Donald Knuth in 1977--1989.
 
 \chapter{Belief rule-base systems}
 \input{contents/belief_rule-base.tex}
+
+\chapter{The method}
+\input{contents/method.tex}
 
 \chapter{Case study}
 \input{contents/case.tex}
