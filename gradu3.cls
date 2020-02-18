@@ -59,14 +59,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% REQUIRED PACKAGES
 
-\RequirePackage{fixltx2e}
+% \RequirePackage{fixltx2e}
 \RequirePackage{ifthen}
 \RequirePackage{chngcntr}
 \RequirePackage{everyshi}[1994/12/09]
 \RequirePackage{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[left=35mm,right=20mm,top=35mm,bottom=35mm,nohead]{geometry}
-\RequirePackage[finnish,english]{babel}
+\RequirePackage[finnish,main=english]{babel}
 \RequirePackage{mathptmx}
 \RequirePackage[scaled=.92]{helvet}
 \RequirePackage{courier}

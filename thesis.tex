@@ -9,7 +9,9 @@
 \usepackage{braket}
 \usepackage{booktabs}
 \usepackage{csquotes}
-\usepackage[backend=bibtex]{biblatex}
+\usepackage[hyphens,spaces,obeyspaces]{url}
+\usepackage[backend=biber, url=false]{biblatex}
+\setlength\bibitemsep{\baselineskip}
 
 % NOTE: This must be the last \usepackage in the whole document!
 % \usepackage[bookmarksopen,bookmarksnumbered,linktocpage]{hyperref}
@@ -58,13 +60,10 @@ Lorem ipsum.
 \chapter{Introduction}
 \input{contents/introduction.tex}
 
-\chapter{Optimization}
-\input{contents/optimization.tex}
-
 \chapter{Multiple criteria decision making}
 \input{contents/mcdm.tex}
 
-\chapter{Belief rule-base systems}
+\chapter{Belief rule-based systems}
 \input{contents/belief_rule-base.tex}
 
 \chapter{The method}
@@ -80,7 +79,6 @@ Lorem ipsum.
 \input{contents/conclusion.tex}
 
 \printbibliography
-
 \appendix
 \input{contents/appendix.tex}
 
